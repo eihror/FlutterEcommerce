@@ -1,0 +1,39 @@
+name: ecommerce_flutter
+description: A Very Good Project created by Very Good CLI.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.10.0
+  flutter: ^3.35.0
+
+dependencies:
+  bloc: ^9.0.1
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.1.1
+  flutter_localizations:
+    sdk: flutter
+  freezed_annotation: ^3.1.0
+  get_it: ^9.1.0
+  go_router: ^17.0.0
+  intl: any
+  json_annotation: ^4.9.0
+  network:
+    git:
+      url: https://github.com/eihror/flutter_network_library.git
+      ref: v1.1.14
+
+dev_dependencies:
+  bloc_test: ^10.0.0
+  build_runner: ^2.10.4
+  flutter_test:
+    sdk: flutter
+  freezed: ^3.2.3
+  json_serializable: ^6.11.2
+  mocktail: ^1.0.4
+  very_good_analysis: ^10.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true

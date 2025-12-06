@@ -1,0 +1,2 @@
+WITH_MULTI_L10N: true
+EXCLUDE_PATHS: "**/l10n/*,*.freezed.dart,lib/core/widgets/*"
