@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/core/extension/string_extension.dart';
+import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -8,7 +9,7 @@ class SignInScreen extends StatefulWidget {
   State<SignInScreen> createState() => _SignInView();
 }
 
-class _SignInView extends State<SignInScreen> {
+class _SignInView extends State<SignInScreen> with TextLocalizationMixin {
   final _formKey = GlobalKey<FormState>();
   bool _passwordVisible = false;
 
@@ -31,13 +32,14 @@ class _SignInView extends State<SignInScreen> {
               crossAxisAlignment: .stretch,
               children: [
                 TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail',
-                    border: OutlineInputBorder(),
+                  decoration: InputDecoration(
+                    labelText: textLocalization.ui.inputEmailLabel,
+                    hintText: textLocalization.ui.inputEmailHint,
+                    border: const OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value != null && !value.isValidEmail) {
-                      return 'Invalid e-mail';
+                      return textLocalization.ui.errorInvalidEmail;
                     }
                     return null;
                   },
@@ -48,7 +50,8 @@ class _SignInView extends State<SignInScreen> {
                   obscureText: !_passwordVisible,
                   autovalidateMode: .onUserInteraction,
                   decoration: InputDecoration(
-                    labelText: 'Password',
+                    labelText: textLocalization.ui.inputPasswordLabel,
+                    hintText: textLocalization.ui.inputPasswordHint,
                     border: const OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -58,15 +61,14 @@ class _SignInView extends State<SignInScreen> {
                       ),
                       onPressed: () {
                         setState(() {
-                          _passwordVisible =
-                              !_passwordVisible; // Toggle visibility
+                          _passwordVisible = !_passwordVisible;
                         });
                       },
                     ),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Password can not be empty';
+                      return textLocalization.ui.errorInvalidPassword;
                     }
                     return null;
                   },
@@ -78,9 +80,11 @@ class _SignInView extends State<SignInScreen> {
                   children: [
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // TODO(igor.melo): Implement this later
+                        },
                         child: Text(
-                          'Create account',
+                          textLocalization.ui.buttonCreateAccount,
                         ),
                       ),
                     ),
@@ -88,10 +92,12 @@ class _SignInView extends State<SignInScreen> {
                       child: FilledButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            // TODO(eihror): Do something if all fields are valid
+                            /*
+                             TODO(eihror): Do something if all fields are valid
+                             */
                           }
                         },
-                        child: Text('Sign In'),
+                        child: Text(textLocalization.ui.buttonSignIn),
                       ),
                     ),
                   ],
@@ -99,8 +105,10 @@ class _SignInView extends State<SignInScreen> {
                 const SizedBox(height: 12),
                 Flexible(
                   child: TextButton(
-                    onPressed: () {},
-                    child: Text('Forgot Password?'),
+                    onPressed: () {
+                      // TODO(igor.melo): Implement this later
+                    },
+                    child: Text(textLocalization.ui.buttonForgotPassword),
                   ),
                 ),
               ],

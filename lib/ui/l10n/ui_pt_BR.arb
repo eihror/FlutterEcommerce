@@ -1,3 +1,13 @@
 {
-  "@@locale": "pt_BR"
+  "@@locale": "pt_BR",
+  "buttonCreateAccount": "Criar conta",
+  "buttonSignIn": "Entrar",
+  "buttonForgotPassword": "Esqueceu sua senha?",
+
+  "inputEmailLabel": "Email",
+  "inputEmailHint": "john.doe@company.com",
+  "errorInvalidEmail": "Você precisa informar um email válido",
+  "inputPasswordLabel": "Senha",
+  "inputPasswordHint": "****************",
+  "errorInvalidPassword": "vpcê precisa informar uma senha"
 }

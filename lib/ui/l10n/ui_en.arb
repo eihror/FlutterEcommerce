@@ -1,3 +1,13 @@
 {
-  "@@locale": "en"
+  "@@locale": "en",
+  "buttonCreateAccount": "Create account",
+  "buttonSignIn": "Sign In",
+  "buttonForgotPassword": "Forgot Password?",
+
+  "inputEmailLabel": "E-mail",
+  "inputEmailHint": "john.doe@company.com",
+  "errorInvalidEmail": "You must add an valid e-mail",
+  "inputPasswordLabel": "Password",
+  "inputPasswordHint": "****************",
+  "errorInvalidPassword": "You must inform an password"
 }

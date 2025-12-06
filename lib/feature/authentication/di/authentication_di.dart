@@ -12,6 +12,6 @@ class AuthenticationDI {
       ),
     );
 
-    // TODO: Register dependencies
+    // TODO(eihror): Register dependencies
   }
 }
