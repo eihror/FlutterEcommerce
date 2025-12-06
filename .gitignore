@@ -113,6 +113,11 @@ app.*.map.json
 
 # Generated l10n files
 lib/**/l10n/gen/
+lib/**/l10n/*.dart
+lib/**/l10n/*.txt
+!lib/**/l10n/app_localizations.dart
+!lib/**/l10n/l10n_extension.dart
+
 lib/**/*.g.dart
 lib/**/*.freezed.dart
 

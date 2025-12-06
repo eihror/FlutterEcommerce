@@ -14,35 +14,43 @@ class App extends StatelessWidget with TextLocalizationMixin {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      localeResolutionCallback: (locale, supportedLocales) {
-        if (!supportedLocales.contains(locale)) {
-          return supportedLocales.first;
-        } else {
-          return locale;
+    return GestureDetector(
+      onTap: () {
+        final currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
         }
       },
-      builder: (context, child) {
-        TextLocalizationMixin.init(context: context);
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localeResolutionCallback: (locale, supportedLocales) {
+          if (!supportedLocales.contains(locale)) {
+            return supportedLocales.first;
+          } else {
+            return locale;
+          }
+        },
+        builder: (context, child) {
+          TextLocalizationMixin.init(context: context);
 
-        final Widget content;
+          final Widget content;
 
-        if (_appEnvironmentBanner != null) {
-          content = Banner(
-            message: _appEnvironmentBanner.name,
-            location: .topEnd,
-            color: _appEnvironmentBanner.color,
-            child: child ?? const SizedBox.shrink(),
-          );
-        } else {
-          content = child ?? const SizedBox.shrink();
-        }
+          if (_appEnvironmentBanner != null) {
+            content = Banner(
+              message: _appEnvironmentBanner.name,
+              location: .topEnd,
+              color: _appEnvironmentBanner.color,
+              child: child ?? const SizedBox.shrink(),
+            );
+          } else {
+            content = child ?? const SizedBox.shrink();
+          }
 
-        return content;
-      },
-      routerConfig: navigationRouter,
+          return content;
+        },
+        routerConfig: navigationRouter,
+      ),
     );
   }
 }

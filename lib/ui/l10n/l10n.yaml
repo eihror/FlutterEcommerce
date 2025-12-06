@@ -1,0 +1,6 @@
+arb-dir: ./
+template-arb-file: ui_en.arb
+output-localization-file: ui_localizations.dart
+output-class: UiLocalizations
+untranslated-messages-file: l10n_error_log.txt
+nullable-getter: false

@@ -3,7 +3,7 @@ import 'package:ecommerce_flutter/navigation/app_route.dart';
 import 'package:go_router/go_router.dart';
 
 class SignInRoute extends AppRoute {
-  SignInRoute() : super(path: '/sign-in');
+  SignInRoute() : super(path: '/auth/sign-in');
 }
 
 final List<RouteBase> authenticationRoutes = [
