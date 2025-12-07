@@ -4,10 +4,15 @@
   "buttonSignIn": "Entrar",
   "buttonForgotPassword": "Esqueceu sua senha?",
 
+  "inputNameLabel": "Nome",
+  "inputNameHint": "John Doe",
   "inputEmailLabel": "Email",
   "inputEmailHint": "john.doe@company.com",
-  "errorInvalidEmail": "Você precisa informar um email válido",
   "inputPasswordLabel": "Senha",
   "inputPasswordHint": "****************",
-  "errorInvalidPassword": "vpcê precisa informar uma senha"
+  "inputConfirmPasswordLabel": "Confirme a senha",
+  "errorInvalidName": "Você precisa informa um nome válido",
+  "errorInvalidEmail": "Você precisa informar um email válido",
+  "errorInvalidPassword": "Você precisa informar uma senha",
+  "errorInvalidConfirmPassword": "Você precisa repetir sua senha"
 }

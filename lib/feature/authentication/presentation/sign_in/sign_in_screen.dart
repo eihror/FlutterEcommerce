@@ -1,11 +1,14 @@
 import 'package:ecommerce_flutter/core/extension/string_extension.dart';
 import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
+import 'package:ecommerce_flutter/feature/authentication/presentation/navigation/authentication_routes.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_in/sign_in_cubit.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_in/sign_in_state.dart';
-import 'package:ecommerce_flutter/ui/component/loading_scaffold.dart';
+import 'package:ecommerce_flutter/ui/component/ef_scaffold.dart';
+import 'package:ecommerce_flutter/ui/component/ef_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -30,12 +33,14 @@ class _SignInView extends State<SignInScreen> with TextLocalizationMixin {
       create: (context) => GetIt.I<SignInCubit>(),
       child: BlocListener<SignInCubit, SignInState>(
         listener: (context, state) {
-          // TODO(eihror): implement listener
+          if (state.uiError != null && context.mounted) {
+            EFSnackBarController().showError(context, state.uiError!.text);
+          }
         },
         child: BlocBuilder<SignInCubit, SignInState>(
           builder: (context, state) {
             final cubit = context.read<SignInCubit>();
-            return LoadingScaffold(
+            return EFScaffold(
               isLoading: state.isLoading,
               body: SafeArea(
                 child: Form(
@@ -53,7 +58,7 @@ class _SignInView extends State<SignInScreen> with TextLocalizationMixin {
                             border: const OutlineInputBorder(),
                           ),
                           validator: (value) {
-                            if (value != null && !value.isValidEmail) {
+                            if (value == null || !value.isValidEmail) {
                               return textLocalization.ui.errorInvalidEmail;
                             }
                             return null;
@@ -95,9 +100,8 @@ class _SignInView extends State<SignInScreen> with TextLocalizationMixin {
                           children: [
                             Expanded(
                               child: OutlinedButton(
-                                onPressed: () {
-                                  // TODO(eihror): Implement this later
-                                },
+                                onPressed: () =>
+                                    context.push(SignUpRoute().path),
                                 child: Text(
                                   textLocalization.ui.buttonCreateAccount,
                                 ),

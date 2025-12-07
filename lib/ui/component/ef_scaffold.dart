@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-class LoadingScaffold extends StatelessWidget {
-  const LoadingScaffold({
+class EFScaffold extends StatelessWidget {
+  const EFScaffold({
     required this.isLoading,
     required this.body,
     super.key,

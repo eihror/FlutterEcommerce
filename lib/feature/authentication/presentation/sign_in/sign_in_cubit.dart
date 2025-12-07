@@ -1,6 +1,7 @@
 import 'package:ecommerce_flutter/feature/authentication/data/repository/authentication_repository.dart';
 import 'package:ecommerce_flutter/feature/authentication/domain/model/sign_in_request.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_in/sign_in_state.dart';
+import 'package:ecommerce_flutter/ui/model/ui_error.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -35,7 +36,15 @@ class SignInCubit extends Cubit<SignInState> {
         emit(state.copyWith(isLoading: false));
       })
       ..onFailure((exception) {
-        emit(state.copyWith(isLoading: false));
+        emit(
+          state.copyWith(
+            isLoading: false,
+            uiError: ScreenUiError(text: 'Alguma coisa aconteceu'),
+          ),
+        );
+        emit(
+          state.copyWith(isLoading: false, uiError: null),
+        );
       });
   }
 }
