@@ -1,4 +1,5 @@
 import 'package:ecommerce_flutter/feature/authentication/presentation/navigation/authentication_routes.dart';
+import 'package:ecommerce_flutter/feature/product/presentation/navigation/product_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,5 +16,6 @@ final navigationRouter = GoRouter(
   redirect: (context, state) {},
   routes: [
     ...authenticationRoutes,
+    ...productRoutes,
   ],
 );
