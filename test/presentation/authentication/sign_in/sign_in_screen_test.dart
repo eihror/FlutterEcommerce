@@ -3,6 +3,7 @@
 import 'package:ecommerce_flutter/di/di.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/navigation/authentication_routes.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_in/sign_in_screen.dart';
+import 'package:ecommerce_flutter/feature/home/presentation/navigation/home_routes.dart';
 import 'package:ecommerce_flutter/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -68,6 +69,10 @@ void main() {
 
     registerAndValidateFields();
 
+    when(() => mockRouter.go(HomeRoute().path)).thenAnswer((_) async {
+      return;
+    });
+
     await tester.enterText(
       userEmailTextFormFieldFinder,
       'john.doe@company.com',
@@ -89,6 +94,6 @@ void main() {
 
     expect(errorFoundList, isEmpty);
 
-    verifyNever(() => mockRouter.go(SignUpRoute().path));
+    verify(() => mockRouter.go(HomeRoute().path)).called(1);
   });
 }

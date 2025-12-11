@@ -3,6 +3,7 @@ import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/navigation/authentication_routes.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_in/sign_in_cubit.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_in/sign_in_state.dart';
+import 'package:ecommerce_flutter/feature/home/presentation/navigation/home_routes.dart';
 import 'package:ecommerce_flutter/ui/component/ef_scaffold.dart';
 import 'package:ecommerce_flutter/ui/component/ef_snack_bar.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,10 @@ class _SignInView extends State<SignInScreen> with TextLocalizationMixin {
         listener: (context, state) {
           if (state.uiError != null && context.mounted) {
             EFSnackBarController().showError(context, state.uiError!.text);
+          }
+
+          if (state.shouldNavigateToHomeScreen) {
+            context.go(HomeRoute().path);
           }
         },
         child: BlocBuilder<SignInCubit, SignInState>(
