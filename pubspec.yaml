@@ -24,6 +24,7 @@ dependencies:
       url: https://github.com/eihror/flutter_network_library.git
       ref: v1.1.14
   result_dart: ^2.1.1
+  solar_icons: ^0.0.5
 
 dev_dependencies:
   bloc_test: ^10.0.0

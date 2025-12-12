@@ -1,15 +1,18 @@
 import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
+import 'package:ecommerce_flutter/ui/component/ef_bottom_bar.dart';
+import 'package:ecommerce_flutter/ui/component/ef_bottom_bar_item.dart';
 import 'package:ecommerce_flutter/ui/component/ef_scaffold.dart';
 import 'package:flutter/material.dart';
+import 'package:solar_icons/solar_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeView();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeView extends State<HomeScreen> with TextLocalizationMixin {
+class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
   int _currentIndex = 0;
 
   final _pageViewController = PageController();
@@ -32,43 +35,60 @@ class _HomeView extends State<HomeScreen> with TextLocalizationMixin {
         child: PageView(
           controller: _pageViewController,
           physics: const NeverScrollableScrollPhysics(),
-          children: List.generate(3, (index) {
+          children: List.generate(4, (index) {
             return Center(
               child: Text('Screen ${index + 1}'),
             );
           }).toList(),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 5,
-        clipBehavior: Clip.antiAlias,
-        child: SizedBox(
-          height: kBottomNavigationBarHeight,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.home),
-                onPressed: () {
-                  _updatePage(0);
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.search),
-                onPressed: () {
-                  _updatePage(1);
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.account_circle_outlined),
-                onPressed: () {
-                  _updatePage(2);
-                },
-              ),
-            ],
+      bottomNavigationBar: EfBottomBar(
+        height: 80,
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.grey.shade400,
+        onTap: _updatePage,
+        items: [
+          EfBottomBarItem(
+            icon: Icon(
+              _currentIndex == 0 ? SolarIconsBold.home : SolarIconsOutline.home,
+              color: _currentIndex == 0 ? Colors.black : Colors.grey.shade700,
+            ),
+            label: 'Home',
+            selectedLabelColor: Colors.black,
+            unselectedLabelColor: Colors.grey.shade700,
           ),
-        ),
+          EfBottomBarItem(
+            icon: Icon(
+              _currentIndex == 1
+                  ? SolarIconsBold.delivery
+                  : SolarIconsOutline.delivery,
+              color: _currentIndex == 1 ? Colors.black : Colors.grey.shade700,
+            ),
+            label: 'My Orders',
+            selectedLabelColor: Colors.black,
+            unselectedLabelColor: Colors.grey.shade700,
+          ),
+          EfBottomBarItem(
+            icon: Icon(
+              _currentIndex == 2
+                  ? SolarIconsBold.heart
+                  : SolarIconsOutline.heart,
+              color: _currentIndex == 2 ? Colors.black : Colors.grey.shade700,
+            ),
+            label: 'Favorite',
+            selectedLabelColor: Colors.black,
+            unselectedLabelColor: Colors.grey.shade700,
+          ),
+          EfBottomBarItem(
+            icon: Icon(
+              _currentIndex == 3 ? SolarIconsBold.user : SolarIconsOutline.user,
+              color: _currentIndex == 3 ? Colors.black : Colors.grey.shade700,
+            ),
+            label: 'My profile',
+            selectedLabelColor: Colors.black,
+            unselectedLabelColor: Colors.grey.shade700,
+          ),
+        ],
       ),
     );
   }
