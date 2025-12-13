@@ -60,6 +60,10 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
             onPressed: () {},
             icon: const Icon(SolarIconsOutline.bell),
           ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(SolarIconsOutline.cart),
+          ),
         ],
       ),
       body: SafeArea(
@@ -76,54 +80,56 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
           ],
         ),
       ),
-      bottomNavigationBar: EfBottomBar(
-        height: 80,
-        currentIndex: _currentIndex,
-        backgroundColor: Colors.grey.shade400,
-        onTap: _updatePage,
-        items: [
-          EfBottomBarItem(
-            icon: Icon(
-              _currentIndex == 0 ? SolarIconsBold.home : SolarIconsOutline.home,
-              color: _currentIndex == 0 ? Colors.black : Colors.grey.shade700,
-            ),
-            label: 'Home',
-            selectedLabelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade700,
+      bottomNavigationBar: _buildBottomBar(context),
+    );
+  }
+
+  Widget _buildBottomBar(BuildContext context) {
+    return EfBottomBar(
+      height: 80,
+      currentIndex: _currentIndex,
+      backgroundColor: Colors.grey.shade400,
+      onTap: _updatePage,
+      items: [
+        EfBottomBarItem(
+          icon: Icon(
+            _currentIndex == 0 ? SolarIconsBold.home : SolarIconsOutline.home,
+            color: _currentIndex == 0 ? Colors.black : Colors.grey.shade700,
           ),
-          EfBottomBarItem(
-            icon: Icon(
-              _currentIndex == 1
-                  ? SolarIconsBold.delivery
-                  : SolarIconsOutline.delivery,
-              color: _currentIndex == 1 ? Colors.black : Colors.grey.shade700,
-            ),
-            label: 'My Orders',
-            selectedLabelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade700,
+          label: 'Home',
+          selectedLabelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+        EfBottomBarItem(
+          icon: Icon(
+            _currentIndex == 1
+                ? SolarIconsBold.delivery
+                : SolarIconsOutline.delivery,
+            color: _currentIndex == 1 ? Colors.black : Colors.grey.shade700,
           ),
-          EfBottomBarItem(
-            icon: Icon(
-              _currentIndex == 2
-                  ? SolarIconsBold.heart
-                  : SolarIconsOutline.heart,
-              color: _currentIndex == 2 ? Colors.black : Colors.grey.shade700,
-            ),
-            label: 'Favorite',
-            selectedLabelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade700,
+          label: 'My Orders',
+          selectedLabelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+        EfBottomBarItem(
+          icon: Icon(
+            _currentIndex == 2 ? SolarIconsBold.heart : SolarIconsOutline.heart,
+            color: _currentIndex == 2 ? Colors.black : Colors.grey.shade700,
           ),
-          EfBottomBarItem(
-            icon: Icon(
-              _currentIndex == 3 ? SolarIconsBold.user : SolarIconsOutline.user,
-              color: _currentIndex == 3 ? Colors.black : Colors.grey.shade700,
-            ),
-            label: 'My profile',
-            selectedLabelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade700,
+          label: 'Favorite',
+          selectedLabelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+        EfBottomBarItem(
+          icon: Icon(
+            _currentIndex == 3 ? SolarIconsBold.user : SolarIconsOutline.user,
+            color: _currentIndex == 3 ? Colors.black : Colors.grey.shade700,
           ),
-        ],
-      ),
+          label: 'My profile',
+          selectedLabelColor: Colors.black,
+          unselectedLabelColor: Colors.grey.shade700,
+        ),
+      ],
     );
   }
 }

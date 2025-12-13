@@ -1,5 +1,3 @@
-// ignore_for_file: discarded_futures
-
 import 'package:ecommerce_flutter/di/di.dart';
 import 'package:ecommerce_flutter/feature/authentication/presentation/sign_up/sign_up_screen.dart';
 import 'package:ecommerce_flutter/l10n/app_localizations.dart';
@@ -23,8 +21,8 @@ void main() {
     GetIt.I.allowReassignment = true;
   });
 
-  tearDown(() {
-    GetIt.I.reset();
+  tearDown(() async {
+    await GetIt.I.reset();
   });
 
   late Finder userNameTextFormFieldFinder;

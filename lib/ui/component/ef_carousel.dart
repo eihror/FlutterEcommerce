@@ -34,9 +34,11 @@ class _EfCarouselState extends State<EfCarousel> {
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.symmetric(horizontal: 5),
               decoration: const BoxDecoration(color: Colors.amber),
-              child: Text(
-                'text $i',
-                style: const TextStyle(fontSize: 16),
+              child: Center(
+                child: Text(
+                  'text $i',
+                  style: const TextStyle(fontSize: 16),
+                ),
               ),
             );
           }).toList(),

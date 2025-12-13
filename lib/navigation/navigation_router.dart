@@ -14,7 +14,6 @@ final navigationRouter = GoRouter(
   initialLocation: HomeRoute().path,
   debugLogDiagnostics: kDebugMode,
   observers: [routeObserver],
-  redirect: (context, state) {},
   routes: [
     ...authenticationRoutes,
     ...homeRoutes,

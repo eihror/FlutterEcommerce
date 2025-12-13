@@ -12,6 +12,6 @@ class ProductDI {
       ),
     );
 
-    // TODO: Register dependencies
+    // TODO(igor.melo): Register dependencies
   }
 }
