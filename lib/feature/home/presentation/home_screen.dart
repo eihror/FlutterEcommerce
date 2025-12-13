@@ -1,4 +1,6 @@
 import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
+import 'package:ecommerce_flutter/feature/home/presentation/tab/home_tab.dart';
+import 'package:ecommerce_flutter/ui/component/ef_app_bar.dart';
 import 'package:ecommerce_flutter/ui/component/ef_bottom_bar.dart';
 import 'package:ecommerce_flutter/ui/component/ef_bottom_bar_item.dart';
 import 'package:ecommerce_flutter/ui/component/ef_scaffold.dart';
@@ -31,15 +33,47 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
     return EFScaffold(
       key: _key,
       isLoading: false,
+      appBar: EfAppBar(
+        title: Row(
+          children: [
+            Column(
+              crossAxisAlignment: .start,
+              children: [
+                Text(
+                  'Hi, Eihror',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Text(
+                  'Let´s go shopping',
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(SolarIconsOutline.magnifier),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(SolarIconsOutline.bell),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: PageView(
           controller: _pageViewController,
           physics: const NeverScrollableScrollPhysics(),
-          children: List.generate(4, (index) {
-            return Center(
-              child: Text('Screen ${index + 1}'),
-            );
-          }).toList(),
+          children: [
+            const HomeTab(),
+            ...List.generate(3, (index) {
+              return Center(
+                child: Text('Screen ${index + 1}'),
+              );
+            }),
+          ],
         ),
       ),
       bottomNavigationBar: EfBottomBar(
