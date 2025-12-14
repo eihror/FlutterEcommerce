@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:ecommerce_flutter/ui/component/ef_loading.dart';
 import 'package:flutter/material.dart';
 
 class EFScaffold extends StatelessWidget {
@@ -46,27 +45,7 @@ class EFScaffold extends StatelessWidget {
           extendBodyBehindAppBar: extendBodyBehindAppBar,
         ),
 
-        if (isLoading) ...[
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 4,
-                sigmaY: 4,
-              ),
-              child: Container(
-                color: Colors.black.withValues(alpha: 0.25),
-              ),
-            ),
-          ),
-
-          const ModalBarrier(
-            dismissible: false,
-            color: Colors.transparent,
-          ),
-          const Center(
-            child: CircularProgressIndicator(),
-          ),
-        ],
+        EfLoading(isLoading: isLoading),
       ],
     );
   }

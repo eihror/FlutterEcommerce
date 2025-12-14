@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/ui/component/ef_body_with_loading.dart';
 import 'package:ecommerce_flutter/ui/component/ef_carousel.dart';
 import 'package:ecommerce_flutter/ui/component/ef_section_title.dart';
 import 'package:flutter/material.dart';
@@ -9,11 +10,56 @@ class HomeTab extends StatefulWidget {
   State<HomeTab> createState() => _HomeTabState();
 }
 
-class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
+class _HomeTabState extends State<HomeTab>
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
+    return EfBodyWithLoading(
+      child: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            indicatorSize: .tab,
+            indicatorPadding: const EdgeInsetsGeometry.symmetric(
+              horizontal: 32,
+            ),
+            indicatorWeight: 3,
+            dividerHeight: 0,
+            tabs: const [
+              Tab(
+                text: 'Home',
+              ),
+              Tab(
+                text: 'Category',
+              ),
+            ],
+          ),
+          Flexible(
+            child: TabBarView(
+              controller: _tabController,
+              children: [_buildHomeMainTab(), _buildHomeCategoryTab()],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  Widget _buildHomeMainTab() {
     return RefreshIndicator(
       color: Colors.white,
       backgroundColor: Colors.blue,
@@ -82,6 +128,34 @@ class _HomeTabState extends State<HomeTab> with AutomaticKeepAliveClientMixin {
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
+  Widget _buildHomeCategoryTab() {
+    return RefreshIndicator(
+      color: Colors.white,
+      backgroundColor: Colors.blue,
+      onRefresh: () async {
+        return Future<void>.delayed(const Duration(seconds: 3));
+      },
+      child: Padding(
+        padding: const .all(16),
+        child: CustomScrollView(
+          slivers: [
+            SliverList.separated(
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 150,
+                  alignment: Alignment.center,
+                  color: Colors.amber[100 * (index % 9)],
+                  child: Text('grid item $index'),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 16);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
