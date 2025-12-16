@@ -1,6 +1,7 @@
+import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
 import 'package:flutter/material.dart';
 
-class EfSectionTitle extends StatelessWidget {
+class EfSectionTitle extends StatelessWidget with TextLocalizationMixin {
   const EfSectionTitle({
     required this.title,
     this.onTap,
@@ -23,7 +24,7 @@ class EfSectionTitle extends StatelessWidget {
           TextButton(
             onPressed: onTap,
             child: Text(
-              'View all',
+              textLocalization.ui.buttonViewAll,
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),

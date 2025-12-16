@@ -1,3 +1,4 @@
+import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
 import 'package:ecommerce_flutter/ui/component/ef_body_with_loading.dart';
 import 'package:ecommerce_flutter/ui/component/ef_carousel.dart';
 import 'package:ecommerce_flutter/ui/component/ef_section_title.dart';
@@ -11,7 +12,10 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+    with
+        AutomaticKeepAliveClientMixin,
+        SingleTickerProviderStateMixin,
+        TextLocalizationMixin {
   late TabController _tabController;
 
   @override
@@ -36,13 +40,9 @@ class _HomeTabState extends State<HomeTab>
             ),
             indicatorWeight: 3,
             dividerHeight: 0,
-            tabs: const [
-              Tab(
-                text: 'Home',
-              ),
-              Tab(
-                text: 'Category',
-              ),
+            tabs: [
+              Tab(text: textLocalization.ui.buttonTabBarHome),
+              Tab(text: textLocalization.ui.buttonTabBarCategory),
             ],
           ),
           Flexible(
@@ -77,7 +77,7 @@ class _HomeTabState extends State<HomeTab>
               padding: const .only(top: 8),
               sliver: SliverToBoxAdapter(
                 child: EfSectionTitle(
-                  title: 'New Arrivals',
+                  title: textLocalization.ui.labelNewArrivals,
                   onTap: () {},
                 ),
               ),
@@ -98,11 +98,11 @@ class _HomeTabState extends State<HomeTab>
                 );
               },
             ),
-            const SliverPadding(
-              padding: .only(top: 16),
+            SliverPadding(
+              padding: const .only(top: 16),
               sliver: SliverToBoxAdapter(
                 child: EfSectionTitle(
-                  title: 'All Products',
+                  title: textLocalization.ui.labelAllProducts,
                 ),
               ),
             ),
