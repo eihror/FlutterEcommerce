@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
 import 'package:ecommerce_flutter/feature/home/presentation/tab/home_tab.dart';
 import 'package:ecommerce_flutter/ui/component/ef_app_bar.dart';
@@ -36,6 +37,20 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
       appBar: EfAppBar(
         title: Row(
           children: [
+            CachedNetworkImage(
+              imageUrl: 'https://picsum.photos/200/200',
+              fit: .cover,
+              imageBuilder: (context, image) => CircleAvatar(
+                backgroundImage: image,
+                radius: 24,
+              ),
+              progressIndicatorBuilder: (context, url, progress) => Center(
+                child: CircularProgressIndicator(
+                  value: progress.progress,
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
             Column(
               crossAxisAlignment: .start,
               children: [
