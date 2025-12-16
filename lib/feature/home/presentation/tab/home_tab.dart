@@ -1,0 +1,161 @@
+import 'package:ecommerce_flutter/core/mixin/text_localization_mixin.dart';
+import 'package:ecommerce_flutter/ui/component/ef_body_with_loading.dart';
+import 'package:ecommerce_flutter/ui/component/ef_carousel.dart';
+import 'package:ecommerce_flutter/ui/component/ef_section_title.dart';
+import 'package:flutter/material.dart';
+
+class HomeTab extends StatefulWidget {
+  const HomeTab({super.key});
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab>
+    with
+        AutomaticKeepAliveClientMixin,
+        SingleTickerProviderStateMixin,
+        TextLocalizationMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {});
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+
+    return EfBodyWithLoading(
+      child: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            indicatorSize: .tab,
+            indicatorPadding: const EdgeInsetsGeometry.symmetric(
+              horizontal: 32,
+            ),
+            indicatorWeight: 3,
+            dividerHeight: 0,
+            tabs: [
+              Tab(text: textLocalization.ui.buttonTabBarHome),
+              Tab(text: textLocalization.ui.buttonTabBarCategory),
+            ],
+          ),
+          Flexible(
+            child: TabBarView(
+              controller: _tabController,
+              children: [_buildHomeMainTab(), _buildHomeCategoryTab()],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  Widget _buildHomeMainTab() {
+    return RefreshIndicator(
+      color: Colors.white,
+      backgroundColor: Colors.blue,
+      onRefresh: () async {
+        return Future<void>.delayed(const Duration(seconds: 3));
+      },
+      child: Padding(
+        padding: const .all(16),
+        child: CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: EfCarousel(),
+            ),
+            SliverPadding(
+              padding: const .only(top: 8),
+              sliver: SliverToBoxAdapter(
+                child: EfSectionTitle(
+                  title: textLocalization.ui.labelNewArrivals,
+                  onTap: () {},
+                ),
+              ),
+            ),
+            SliverGrid.builder(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 3 / 4,
+              ),
+              itemCount: 4,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  alignment: Alignment.center,
+                  color: Colors.teal[100 * (index % 9)],
+                  child: Text('grid item $index'),
+                );
+              },
+            ),
+            SliverPadding(
+              padding: const .only(top: 16),
+              sliver: SliverToBoxAdapter(
+                child: EfSectionTitle(
+                  title: textLocalization.ui.labelAllProducts,
+                ),
+              ),
+            ),
+            SliverGrid.builder(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: MediaQuery.of(context).size.width / 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 3 / 4,
+              ),
+              itemCount: 20,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  alignment: Alignment.center,
+                  color: Colors.amber[100 * (index % 9)],
+                  child: Text('grid item $index'),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHomeCategoryTab() {
+    return RefreshIndicator(
+      color: Colors.white,
+      backgroundColor: Colors.blue,
+      onRefresh: () async {
+        return Future<void>.delayed(const Duration(seconds: 3));
+      },
+      child: Padding(
+        padding: const .all(16),
+        child: CustomScrollView(
+          slivers: [
+            SliverList.separated(
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 150,
+                  alignment: Alignment.center,
+                  color: Colors.amber[100 * (index % 9)],
+                  child: Text('grid item $index'),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 16);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

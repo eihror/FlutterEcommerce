@@ -1,8 +1,30 @@
 {
   "@@locale": "en",
+  "titleAppBarWithText": "Hi, {username}",
+  "@titleAppBarWithText": {
+    "description": "A welcome message to user",
+    "placeholders": {
+      "username": {
+        "type": "String",
+        "example": "John Doe"
+      }
+    }
+  },
+  "subTitleAppBar": "Let´s go shopping",
+
+  "labelNewArrivals": "New Arrivals",
+  "labelAllProducts": "All Products",
+
   "buttonCreateAccount": "Create account",
   "buttonSignIn": "Sign In",
   "buttonForgotPassword": "Forgot Password?",
+  "buttonViewAll": "View all",
+  "buttonBottomBarHome": "Home",
+  "buttonBottomBarMyOrders": "My Orders",
+  "buttonBottomBarFavorite": "Favorite",
+  "buttonBottomBarMyProfile": "My Profile",
+  "buttonTabBarHome": "Home",
+  "buttonTabBarCategory": "Category",
 
   "inputNameLabel": "Name",
   "inputNameHint": "John Doe",
@@ -11,6 +33,7 @@
   "inputPasswordLabel": "Password",
   "inputPasswordHint": "****************",
   "inputConfirmPasswordLabel": "Confirm Password",
+
   "errorInvalidName": "You must add an valid name",
   "errorInvalidEmail": "You must add an valid e-mail",
   "errorInvalidPassword": "You must inform an password",

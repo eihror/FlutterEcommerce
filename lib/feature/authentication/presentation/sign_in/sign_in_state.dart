@@ -10,5 +10,6 @@ sealed class SignInState with _$SignInState {
     @Default('') String userEmail,
     @Default('') String userPassword,
     UiError? uiError,
+    @Default(false) bool shouldNavigateToHomeScreen,
   }) = _SignInState;
 }

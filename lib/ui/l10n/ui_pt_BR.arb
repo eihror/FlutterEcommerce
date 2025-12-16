@@ -1,8 +1,21 @@
 {
   "@@locale": "pt_BR",
+  "titleAppBarWithText": "Olá, {username}",
+  "subTitleAppBar": "Vamos comprar!",
+
+  "labelNewArrivals": "Novidades",
+  "labelAllProducts": "Todos os produtos",
+
   "buttonCreateAccount": "Criar conta",
   "buttonSignIn": "Entrar",
   "buttonForgotPassword": "Esqueceu sua senha?",
+  "buttonViewAll": "Ver todos",
+  "buttonBottomBarHome": "Início",
+  "buttonBottomBarMyOrders": "Pedidos",
+  "buttonBottomBarFavorite": "Favoritos",
+  "buttonBottomBarMyProfile": "Perfil",
+  "buttonTabBarHome": "Início",
+  "buttonTabBarCategory": "Categoria",
 
   "inputNameLabel": "Nome",
   "inputNameHint": "John Doe",

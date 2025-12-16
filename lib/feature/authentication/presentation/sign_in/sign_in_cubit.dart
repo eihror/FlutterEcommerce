@@ -33,7 +33,14 @@ class SignInCubit extends Cubit<SignInState> {
 
     await _authenticationRepository.doSignIn(data: signInRequest)
       ..onSuccess((_) {
-        emit(state.copyWith(isLoading: false));
+        emit(
+          state.copyWith(
+            isLoading: false,
+            shouldNavigateToHomeScreen: true,
+          ),
+        );
+
+        emit(state.copyWith(shouldNavigateToHomeScreen: false));
       })
       ..onFailure((exception) {
         emit(

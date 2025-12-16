@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   bloc: ^9.0.1
+  cached_network_image: ^3.4.1
+  carousel_slider: ^5.1.1
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -24,6 +26,7 @@ dependencies:
       url: https://github.com/eihror/flutter_network_library.git
       ref: v1.1.14
   result_dart: ^2.1.1
+  solar_icons: ^0.0.5
 
 dev_dependencies:
   bloc_test: ^10.0.0
