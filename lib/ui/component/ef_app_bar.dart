@@ -7,12 +7,14 @@ class EfAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.leading,
     this.title,
+    this.centerTitle,
   });
 
   final bool automaticallyImplyLeading;
   final Widget? leading;
   final Widget? title;
   final List<Widget>? actions;
+  final bool? centerTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class EfAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: leading,
       title: title,
       actions: actions,
+      centerTitle: centerTitle,
     );
   }
 

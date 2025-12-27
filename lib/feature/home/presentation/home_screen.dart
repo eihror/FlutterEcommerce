@@ -34,53 +34,7 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
     return EFScaffold(
       key: _key,
       isLoading: false,
-      appBar: EfAppBar(
-        title: Row(
-          children: [
-            CachedNetworkImage(
-              imageUrl: 'https://picsum.photos/200/200',
-              fit: .cover,
-              imageBuilder: (context, image) => CircleAvatar(
-                backgroundImage: image,
-                radius: 24,
-              ),
-              progressIndicatorBuilder: (context, url, progress) => Center(
-                child: CircularProgressIndicator(
-                  value: progress.progress,
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: .start,
-              children: [
-                Text(
-                  textLocalization.ui.titleAppBarWithText('Eihror'),
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  textLocalization.ui.subTitleAppBar,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(SolarIconsOutline.magnifier),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(SolarIconsOutline.bell),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(SolarIconsOutline.cart),
-          ),
-        ],
-      ),
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: PageView(
           controller: _pageViewController,
@@ -95,11 +49,11 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
           ],
         ),
       ),
-      bottomNavigationBar: _buildBottomBar(context),
+      bottomNavigationBar: _buildBottomBar(),
     );
   }
 
-  Widget _buildBottomBar(BuildContext context) {
+  Widget _buildBottomBar() {
     return EfBottomBar(
       height: 80,
       currentIndex: _currentIndex,
@@ -146,5 +100,60 @@ class _HomeScreenState extends State<HomeScreen> with TextLocalizationMixin {
         ),
       ],
     );
+  }
+
+  PreferredSizeWidget _buildAppBar() {
+    return _currentIndex == 0
+        ? EfAppBar(
+            title: Row(
+              children: [
+                CachedNetworkImage(
+                  imageUrl: 'https://picsum.photos/200/200',
+                  fit: .cover,
+                  imageBuilder: (context, image) => CircleAvatar(
+                    backgroundImage: image,
+                    radius: 24,
+                  ),
+                  progressIndicatorBuilder: (context, url, progress) => Center(
+                    child: CircularProgressIndicator(
+                      value: progress.progress,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Column(
+                  crossAxisAlignment: .start,
+                  children: [
+                    Text(
+                      textLocalization.ui.titleAppBarWithText('Eihror'),
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Text(
+                      textLocalization.ui.subTitleAppBar,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(SolarIconsOutline.magnifier),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(SolarIconsOutline.bell),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(SolarIconsOutline.cart),
+              ),
+            ],
+          )
+        : AppBar(
+            title: Text(textLocalization.ui.appBarMyOrders),
+            centerTitle: true,
+          );
   }
 }

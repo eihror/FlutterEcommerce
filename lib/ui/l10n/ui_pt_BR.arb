@@ -3,6 +3,8 @@
   "titleAppBarWithText": "Olá, {username}",
   "subTitleAppBar": "Vamos comprar!",
 
+  "appBarMyOrders": "Meus Pedidos",
+
   "labelNewArrivals": "Novidades",
   "labelAllProducts": "Todos os produtos",
 
